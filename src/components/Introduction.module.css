@@ -1,0 +1,52 @@
+.introContainer {
+    background-color: #050505;
+    display: grid;
+    justify-items: center;
+}
+
+.logo {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+    position: relative;
+}
+
+.logo svg {
+    position: absolute;
+    left: -19px;
+    z-index: 1;
+}
+
+.logoText {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    color: #EDEDED;
+
+    z-index: 2;
+}
+
+.logoText .contrastText {
+    font-weight: 400;
+    color: #EA7322;
+}
+
+.introText {
+    font-family: 'Poppins', sans-serif;
+    color: #EDEDED;
+    font-size: 1.75rem;
+    line-height: 2.2rem;
+    font-weight: 300;
+
+    text-align: center;
+    max-width: 600px;
+
+    margin-bottom: 75px;
+}
+
+.introText .contrastText {
+    font-weight: 500;
+    color: #EA7322;
+}
