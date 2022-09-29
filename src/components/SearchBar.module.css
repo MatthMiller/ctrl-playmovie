@@ -1,14 +1,24 @@
-.container {
+.inputsContainer {
+    margin: 0px 20px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    max-width: 650px;
+    transition: 200ms;
+    gap: 25px;
+}
+
+.barContainer {
     position: relative;
 }
 
 .searchBar {
-    max-width: 500px;
+    /* max-width: 500px; */
     background-color: #191919;
     border: 1.5px solid #0A0A0A;
     width: 600px;
     border-radius: 4px;
-    /* width: 100%; */
+    width: 100%;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.125rem;
     line-height: 1.125rem;
@@ -17,7 +27,6 @@
     padding-left: 44px;
     transition: 200ms;
     color: #D6D6D6;
-    margin-bottom: 30px;
 }
 
 .searchBar::placeholder {
@@ -31,10 +40,11 @@
     box-shadow: 0 0 0 2px #FFB583;
 }
 
-.searchBar:focus svg {
+/* .searchBar:focus svg {
     visibility: hidden;
-}
+} */
 
+.searchDateIcon,
 .searchIcon {
     position: absolute;
     top: 12px; /* Distância marginTop text */
@@ -42,10 +52,16 @@
     transition: 200ms;
 }
 
-.searchIconPath {
+.searchDateIcon {
+    left: 11px;
+}
+
+.searchIconPath,
+.searchDateIconPath {
     transition: 200ms;
 }
 
-.searchBar:focus ~ label .searchIcon path {
+.searchBar:focus ~ label .searchIcon path,
+.searchBar:focus ~ label .searchDateIcon path {
     fill: #F8F8F8;
 }

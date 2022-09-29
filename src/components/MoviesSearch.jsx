@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MoviesContext } from '../contexts/MoviesContext';
 import Loading from './Loading';
 import styles from './MoviesSearch.module.css';
 
 const Movies = () => {
-  const { dataState, errorState, loadingState } =
-    React.useContext(MoviesContext);
+  const { dataState, errorState, loadingState } = useContext(MoviesContext);
 
-  // ordenar o dataState com um filter interno e usar map
-  // nele na hora de  mostrar
+  // Se eu for fazer um componente p escolher crescente/decrescente,
+  // caberia o parâmetro que recebe o estado da escolha, e baseado nela,
+  // o return invés de ser só de ser o b antes do a, é
+  // {estado == 'crescente' ? yearToNumber(a.Year) - yearToNumber(b.Year)
+  // : yearToNumber(a.Year) - yearToNumber(b.Year)}
+  const decrescentOrderFilter = (moviesObject) => {
+    const yearToNumber = (string) =>
+      +string.replace(/-[\s\S]*$/, '').replace('-', '');
+
+    const newObject = [...moviesObject].sort((a, b) => {
+      // b - a: decrescent, a - b: crescent
+      return yearToNumber(b.Year) - yearToNumber(a.Year);
+    });
+
+    return newObject;
+  };
 
   return (
     <>
       <h3 className={styles.sectionTitle}>🎬 Filmes</h3>
       <section className={styles.moviesContainer}>
         {!errorState && dataState?.Search
-          ? dataState.Search.map((actualMovie) => (
+          ? decrescentOrderFilter(...[dataState.Search]).map((actualMovie) => (
               <div
                 className={`${styles.movieCard} ${styles.entryAnimation}`}
                 key={actualMovie.imdbID}

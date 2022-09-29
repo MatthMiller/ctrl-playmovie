@@ -21,39 +21,88 @@ const SearchIcon = () => {
   );
 };
 
-const SearchBar = ({ placeholder }) => {
+const SearchDateIcon = () => {
+  return (
+    <svg
+      className={styles.searchDateIcon}
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='current'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        className={styles.searchDateIcon}
+        d='M7 14V12H17V14H7ZM7 18V16H14V18H7ZM5 22C4.45 22 3.979 21.8043 3.587 21.413C3.19567 21.021 3 20.55 3 20V6C3 5.45 3.19567 4.97933 3.587 4.588C3.979 4.196 4.45 4 5 4H6V2H8V4H16V2H18V4H19C19.55 4 20.021 4.196 20.413 4.588C20.8043 4.97933 21 5.45 21 6V20C21 20.55 20.8043 21.021 20.413 21.413C20.021 21.8043 19.55 22 19 22H5ZM5 20H19V10H5V20Z'
+        fill='#737373'
+      />
+    </svg>
+  );
+};
+
+const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [yearTerm, setYearTerm] = React.useState('');
   const { dataState, request, API_KEY } = React.useContext(MoviesContext);
 
-  const handleChange = ({ target }) => {
-    const trimmedTerm = target.value.trim();
+  React.useEffect(() => {
+    if (searchTerm !== '') {
+      console.log(
+        'Termo sendo pesquisado: ',
+        searchTerm.trim() + yearTerm.trim()
+      );
+      searchMovies(searchTerm.trim(), yearTerm.trim());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, yearTerm]);
+
+  const handleSearchChange = ({ target }) => {
     setSearchTerm(target.value);
-    searchMovies(trimmedTerm);
-    console.log('termo sendo pesquisado: ', trimmedTerm);
+    // Pra verificar como está o data state
+    if (dataState) console.log(dataState);
   };
 
-  React.useEffect(() => {
-    if (dataState) console.log(dataState);
-  }, [dataState]);
+  const handleYearChange = ({ target }) => {
+    setYearTerm(target.value);
+  };
 
-  const searchMovies = async (term) => {
-    await request(`http://www.omdbapi.com/?s=${term}&apikey=${API_KEY}`);
+  const searchMovies = async (search, year) => {
+    await request(
+      `http://www.omdbapi.com/?s=${search}&y=${year}&apikey=${API_KEY}&type=movie`
+    );
   };
 
   return (
-    <div className={styles.container}>
-      <input
-        className={styles.searchBar}
-        type='text'
-        value={searchTerm}
-        onChange={handleChange}
-        id='searchBar'
-        spellCheck={false}
-        placeholder={placeholder}
-      />
-      <label htmlFor='searchBar'>
-        <SearchIcon />
-      </label>
+    <div className={styles.inputsContainer}>
+      <div className={styles.barContainer}>
+        <input
+          className={styles.searchBar}
+          type='text'
+          value={searchTerm}
+          onChange={handleSearchChange}
+          id='searchBar'
+          spellCheck={false}
+          placeholder={searchPlaceholder}
+        />
+        <label htmlFor='searchBar'>
+          <SearchIcon />
+        </label>
+      </div>
+
+      <div className={styles.barContainer}>
+        <input
+          className={styles.searchBar}
+          type='text'
+          value={yearTerm}
+          onChange={handleYearChange}
+          id='yearBar'
+          spellCheck={false}
+          placeholder={yearPlaceholder}
+        />
+        <label htmlFor='yearBar'>
+          <SearchDateIcon />
+        </label>
+      </div>
     </div>
   );
 };

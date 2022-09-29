@@ -33,7 +33,7 @@ const Introduction = () => {
         <b className={styles.contrastText}>qualquer filme!</b>
       </h2>
 
-      <SearchBar placeholder='Nome do filme' />
+      <SearchBar searchPlaceholder='Nome do filme' yearPlaceholder='Ano' />
     </section>
   );
 };
