@@ -120,3 +120,8 @@
     transition: 200ms;
 }
 
+.spinnerContainer {
+    width: 180px;
+    display: grid;
+    place-content: center;
+}

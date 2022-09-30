@@ -38,7 +38,7 @@
     }
 
     .moviePoster:hover,
-    .noPoster:not(.onlyTitle):hover {
+    .noPoster:not(.noMovie):hover {
         box-shadow: 0 0 0 2px #EE6C13;
         cursor: pointer;
     }

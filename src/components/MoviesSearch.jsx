@@ -68,9 +68,11 @@ const MoviesSearch = () => {
           <div className={styles.noMovies}>
             {/* <Loading /> */}
             {loadingState ? (
-              <Loading />
+              <div className={listStyles.spinnerContainer}>
+                <Loading />
+              </div>
             ) : (
-              <div className={`${styles.noPoster}`}>
+              <div className={`${styles.noPoster} ${styles.noMovie}`}>
                 <p className={styles.movieTitle}>
                   Nenhum filme foi encontrado com base nas buscas!
                 </p>
