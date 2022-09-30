@@ -24,7 +24,7 @@ const Introduction = () => {
     <section className={styles.introContainer}>
       <div className={styles.logo}>
         <LogoIcon />
-        <h1 className={styles.logoText}>
+        <h1 translate='no' className={styles.logoText}>
           Ctrl+Play<b className={styles.contrastText}>Movie</b>
         </h1>
       </div>
