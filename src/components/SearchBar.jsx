@@ -80,6 +80,7 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
           type='text'
           value={searchTerm}
           onChange={handleSearchChange}
+          onBlur={handleSearchChange}
           id='searchBar'
           spellCheck={false}
           placeholder={searchPlaceholder}
@@ -95,6 +96,7 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
           type='text'
           value={yearTerm}
           onChange={handleYearChange}
+          onBlur={handleYearChange}
           id='yearBar'
           spellCheck={false}
           placeholder={yearPlaceholder}
