@@ -4,6 +4,7 @@ import useFetchAPI from './customHooks/useFetchAPI';
 import Introduction from './components/Introduction';
 import MoviesSearch from './components/MoviesSearch';
 import { SearchContext } from './contexts/MoviesContext';
+import MoviesFavorites from './components/MoviesFavorites';
 
 // API: http://www.omdbapi.com/
 // Postman pra testar a API: https://web.postman.co/workspace/49c6c795-ebbf-49c0-91fc-eecda4d2efad/request/23562650-a76d9184-3354-4684-b153-912512ca0b5a
@@ -27,6 +28,7 @@ const App = () => {
       nisso, pós fetch, só que teria q ser feito n vezes */}
 
       <MoviesSearch />
+      <MoviesFavorites />
     </SearchContext>
   );
 };

@@ -8,17 +8,6 @@
     font-weight: 400;
 }
 
-.moviesContainer {
-    display: flex;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 180px);
-    /* grid-template-rows: repeat(auto-fill, 260px); */
-    grid-template-rows: repeat(auto-fill, max-content);
-    gap: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
 .entryAnimation {
     animation: 300ms entryCards forwards;
 }
@@ -49,7 +38,7 @@
     }
 
     .moviePoster:hover,
-    .noPoster:hover {
+    .noPoster:not(.onlyTitle):hover {
         box-shadow: 0 0 0 2px #EE6C13;
         cursor: pointer;
     }
@@ -82,6 +71,16 @@
     padding: 10px 15px;
     font-size: 0.875rem;
     line-height: 1.125rem;
+}
+
+.noMovies .noPoster {
+    row-gap: 0;
+}
+
+.noMovies {
+    height: 260px;
+    display: grid;
+    align-items: center;
 }
 
 .noPoster .movieTitle {

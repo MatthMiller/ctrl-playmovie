@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { MoviesContext } from '../contexts/MoviesContext';
 import Loading from './Loading';
 import styles from './MoviesSearch.module.css';
+import listStyles from './MoviesList.module.css';
+import { FavoriteIcon } from './MoviesFavorites';
 
-const Movies = () => {
+const MoviesSearch = () => {
   const { dataState, errorState, loadingState } = useContext(MoviesContext);
 
   // Se eu for fazer um componente p escolher crescente/decrescente,
@@ -25,41 +27,60 @@ const Movies = () => {
 
   return (
     <>
-      <h3 className={styles.sectionTitle}>🎬 Filmes</h3>
-      <section className={styles.moviesContainer}>
-        {!errorState && dataState?.Search
-          ? decrescentOrderFilter(...[dataState.Search]).map((actualMovie) => (
-              <div
-                className={`${styles.movieCard} ${styles.entryAnimation}`}
-                key={actualMovie.imdbID}
-              >
-                {actualMovie.Poster !== 'N/A' ? (
-                  <img
-                    className={styles.moviePoster}
-                    src={
-                      actualMovie.Poster !== 'N/A' ? actualMovie.Poster : null
-                    }
-                    alt={`Imagem de poster do filme "${actualMovie.Title}"`}
-                    // onClick={(actualMovie.imdbID) => Link:seilaoq}
-                    // ver como fazer linha acima pra gerar uma rota baseada
-                    // no imdbID. Na verdade serão modais com as info
-                  ></img>
-                ) : (
-                  <div className={styles.noPoster}>
-                    <p className={styles.movieTitle}>{actualMovie.Title}</p>
-                    <p className={styles.imageNotFound}>
-                      Imagem de poster indisponível
-                    </p>
-                  </div>
-                )}
-                <p className={styles.releaseYear}>{`(${actualMovie.Year})`}</p>
+      <h3 className={listStyles.sectionTitle}>🎬 Filmes</h3>
+      <section className={listStyles.moviesContainer}>
+        {!errorState && dataState?.Search ? (
+          decrescentOrderFilter(...[dataState.Search]).map((actualMovie) => (
+            <div
+              className={`${listStyles.movieCard} ${styles.entryAnimation}`}
+              key={actualMovie.imdbID}
+            >
+              {actualMovie.Poster !== 'N/A' ? (
+                <img
+                  className={styles.moviePoster}
+                  src={actualMovie.Poster !== 'N/A' ? actualMovie.Poster : null}
+                  alt={`Imagem de poster do filme "${actualMovie.Title}"`}
+                />
+              ) : (
+                <div className={styles.noPoster}>
+                  <p className={styles.movieTitle}>{actualMovie.Title}</p>
+                  <p className={styles.imageNotFound}>
+                    Imagem de poster indisponível
+                  </p>
+                </div>
+              )}
+              <div className={listStyles.favoriteTooltip}>
+                {/* trocar por um componente de svg da estrela.
+                  O estado de amarelo é baseado no fato de se o 
+                actualMovie.imdbID está contido nos favoritos*/}
+                {/* onClick={(actualMovie.imdbID) => Link:seilaoq}
+                  ver como fazer linha acima pra gerar uma rota baseada
+                no imdbID. Na verdade serão modais com as info */}
+                <p>Favorite!</p>
+                <FavoriteIcon />
               </div>
-            ))
-          : null}
-        {loadingState ? <Loading /> : null}
+              <p
+                className={listStyles.releaseYear}
+              >{`(${actualMovie.Year})`}</p>
+            </div>
+          ))
+        ) : (
+          <div className={styles.noMovies}>
+            {/* <Loading /> */}
+            {loadingState ? (
+              <Loading />
+            ) : (
+              <div className={`${styles.noPoster}`}>
+                <p className={styles.movieTitle}>
+                  Nenhum filme foi encontrado com base nas buscas!
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </section>
     </>
   );
 };
 
-export default Movies;
+export default MoviesSearch;
