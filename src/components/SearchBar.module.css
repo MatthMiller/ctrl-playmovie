@@ -26,8 +26,8 @@
     border-radius: 4px;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.125rem;
+    font-size: 1rem;
+    line-height: 1rem;
     font-weight: 400;
     padding: 10px 12px;
     padding-left: 44px;
@@ -53,7 +53,7 @@
 .searchDateIcon,
 .searchIcon {
     position: absolute;
-    top: 12px; /* Distância marginTop text */
+    top: 10px; /* Distância marginTop text */
     left: 12px;
     transition: 200ms;
 }
