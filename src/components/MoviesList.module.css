@@ -103,6 +103,12 @@
     color: #737373
 }
 
+@media (pointer: coarse) {
+    .favoriteTooltip {
+        display: none;
+    }
+}
+
 @media (pointer: fine) {
     .favoriteTooltip {
         font-family: 'Montserrat', sans-serif;
