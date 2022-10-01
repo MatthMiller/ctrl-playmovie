@@ -24,7 +24,7 @@ const useSearchMovies = () => {
     }
   }, []);
 
-  return { dataState, loadingState, errorState, request };
+  return { dataState, setDataState, loadingState, errorState, request };
 };
 
 export default useSearchMovies;

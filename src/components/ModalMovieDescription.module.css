@@ -35,6 +35,7 @@
     display: grid;
     grid-template-columns: 180px 1fr;
     gap: 20px;
+    min-width: 500px;
     max-width: 600px;
     position: relative;
     animation: 300ms entryModal forwards;
@@ -54,16 +55,21 @@
 
 .loadingParent .modal {
     grid-template-columns: auto;
+    min-width: max-content;
 }
 
 .movieTitle {
     font-family: 'Poppins', sans-serif;
-    margin-top: 12px;
     font-weight: 300;
     text-align: center;
     color: #EDEDED;
     font-size: 1rem;
     line-height: 1.1rem;
+}
+
+.posterColumn {
+    display: grid;
+    gap: 12px;
 }
 
 .infoType {
@@ -85,6 +91,22 @@
     font-family: 'Montserrat', sans-serif;
     color: #8B8B8B;
     font-weight: 400;
+}
+
+.imdbRating {
+    display: grid;
+    justify-content: center;
+    row-gap: 4px;
+}
+
+.imdbRatingText {
+    text-align: center;
+    grid-column: 1/-1;
+    line-height: 0.875rem;
+    font-size: 0.875rem;
+    font-family: 'Poppins', sans-serif;
+    color: #8B8B8B;
+    font-weight: 300;
 }
 
 .closeModalIcon {
@@ -115,6 +137,7 @@
 
     .modal {
         margin: 0 10px;
+        min-width: 286px;
         grid-template-columns: 1fr;
         gap: 30px;
         padding: 30px 15px;
@@ -123,5 +146,16 @@
     .closeModalIcon {
         top: 16px;
         right: 13px;
+    }
+}
+
+@media (max-width: 355px) {
+    .modal {
+        gap: 15px;
+    }
+
+    .infoType {
+        font-size: 0.875rem;
+        line-height: 1.1rem;
     }
 }

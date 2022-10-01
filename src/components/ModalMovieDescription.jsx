@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { MoviesContext } from '../contexts/MoviesContext';
+import ImdbRatingStars from './ImdbRatingStars';
 import Loading from './Loading';
 import styles from './ModalMovieDescription.module.css';
 import listStyles from './MoviesList.module.css';
@@ -67,13 +68,20 @@ const ModalMovieDescription = () => {
                       <p className={listStyles.movieTitle}>
                         {movieDescription?.Title}
                       </p>
-                      <p className={styles.imageNotFound}>
+                      <p className={listStyles.imageNotFound}>
                         Imagem de poster indisponível
                       </p>
                     </div>
                   )}
                   <p className={styles.movieTitle}>{movieDescription?.Title}</p>
-                  {/* {modalActivation} */}
+                  {movieDescription?.imdbRating !== 'N/A' ? (
+                    <div className={styles.imdbRating}>
+                      <ImdbRatingStars
+                        imdbRating={movieDescription?.imdbRating}
+                      />
+                      <p className={styles.imdbRatingText}>Nota IMDb</p>
+                    </div>
+                  ) : null}
                 </div>
                 <div className={styles.infoColumn}>
                   <p className={styles.infoType}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MoviesContext } from '../contexts/MoviesContext';
 import styles from './SearchBar.module.css';
+import debounce from 'lodash.debounce';
 
 const SearchIcon = () => {
   return (
@@ -43,7 +44,8 @@ const SearchDateIcon = () => {
 const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [yearTerm, setYearTerm] = React.useState('');
-  const { dataState, request, API_KEY } = React.useContext(MoviesContext);
+  const { dataState, setDataState, request, API_KEY } =
+    React.useContext(MoviesContext);
 
   React.useEffect(() => {
     if (searchTerm !== '') {
@@ -51,7 +53,9 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
         'Termo sendo pesquisado: ',
         searchTerm.trim() + yearTerm.trim()
       );
-      searchMovies(searchTerm.trim(), yearTerm.trim());
+      // searchMovies(searchTerm.trim(), yearTerm.trim());
+      setDataState(null);
+      debouncedSearchMovies(searchTerm.trim(), yearTerm.trim());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, yearTerm]);
@@ -65,6 +69,11 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
   const handleYearChange = ({ target }) => {
     setYearTerm(target.value);
   };
+
+  const debouncedSearchMovies = debounce(
+    (search, year) => searchMovies(search, year),
+    50
+  );
 
   const searchMovies = async (search, year) => {
     await request(
