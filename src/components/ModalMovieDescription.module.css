@@ -109,6 +109,10 @@
         grid-template-columns: 180px;
     }
 
+    .loadingParent .modal {
+        padding: 30px;
+     }
+
     .modal {
         margin: 0 10px;
         grid-template-columns: 1fr;
