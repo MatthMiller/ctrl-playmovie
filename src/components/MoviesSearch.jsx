@@ -7,6 +7,7 @@ import { FavoriteIcon } from './MoviesFavorites';
 
 const MoviesSearch = () => {
   const { dataState, errorState, loadingState } = useContext(MoviesContext);
+  const { setModalActivation } = useContext(MoviesContext);
 
   // Se eu for fazer um componente p escolher crescente/decrescente,
   // caberia o parâmetro que recebe o estado da escolha, e baseado nela,
@@ -25,6 +26,11 @@ const MoviesSearch = () => {
     return newObject;
   };
 
+  const handleClickOnMovie = (imdbID) => {
+    console.log('imdbID atual:', imdbID);
+    setModalActivation(true);
+  };
+
   return (
     <>
       <h3 className={listStyles.sectionTitle}>🎬 Filmes</h3>
@@ -34,6 +40,7 @@ const MoviesSearch = () => {
             <div
               className={`${listStyles.movieCard} ${styles.entryAnimation}`}
               key={actualMovie.imdbID}
+              onClick={() => handleClickOnMovie(actualMovie.imdbID)}
             >
               {actualMovie.Poster !== 'N/A' ? (
                 <img
@@ -50,12 +57,6 @@ const MoviesSearch = () => {
                 </div>
               )}
               <div className={listStyles.favoriteTooltip}>
-                {/* trocar por um componente de svg da estrela.
-                  O estado de amarelo é baseado no fato de se o 
-                actualMovie.imdbID está contido nos favoritos*/}
-                {/* onClick={(actualMovie.imdbID) => Link:seilaoq}
-                  ver como fazer linha acima pra gerar uma rota baseada
-                no imdbID. Na verdade serão modais com as info */}
                 <p>Favorite!</p>
                 <FavoriteIcon />
               </div>
