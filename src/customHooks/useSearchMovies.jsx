@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useFetchAPI = () => {
+const useSearchMovies = () => {
   const [dataState, setDataState] = React.useState(null);
   const [errorState, setErrorState] = React.useState(false);
   const [loadingState, setLoadingState] = React.useState(null);
@@ -27,4 +27,4 @@ const useFetchAPI = () => {
   return { dataState, loadingState, errorState, request };
 };
 
-export default useFetchAPI;
+export default useSearchMovies;

@@ -1,11 +1,18 @@
 import React from 'react';
-import useFetchAPI from '../customHooks/useFetchAPI';
+import useMovieDescription from '../customHooks/useMovieDescription';
+import useSearchMovies from '../customHooks/useSearchMovies';
 
 export const MoviesContext = React.createContext();
 
 export const SearchContext = ({ children }) => {
-  const { dataState, loadingState, errorState, request } = useFetchAPI();
-  const [modalActivation, setModalActivation] = React.useState(false);
+  const { dataState, loadingState, errorState, request } = useSearchMovies();
+  const {
+    movieDescription,
+    setMovieDescription,
+    loadingDescription,
+    requestDescription,
+  } = useMovieDescription();
+  const [modalActivation, setModalActivation] = React.useState('');
   const API_KEY = '395d9b95';
 
   return (
@@ -16,6 +23,10 @@ export const SearchContext = ({ children }) => {
         loadingState,
         errorState,
         request,
+        movieDescription,
+        setMovieDescription,
+        loadingDescription,
+        requestDescription,
         modalActivation,
         setModalActivation,
       }}

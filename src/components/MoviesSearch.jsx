@@ -7,13 +7,10 @@ import { FavoriteIcon } from './MoviesFavorites';
 
 const MoviesSearch = () => {
   const { dataState, errorState, loadingState } = useContext(MoviesContext);
-  const { setModalActivation } = useContext(MoviesContext);
+  const { movieDescription, requestDescription } = useContext(MoviesContext);
+  const { modalActivation, setModalActivation } = useContext(MoviesContext);
+  const { API_KEY } = useContext(MoviesContext);
 
-  // Se eu for fazer um componente p escolher crescente/decrescente,
-  // caberia o parâmetro que recebe o estado da escolha, e baseado nela,
-  // o return invés de ser só de ser o b antes do a, é
-  // {estado == 'crescente' ? yearToNumber(a.Year) - yearToNumber(b.Year)
-  // : yearToNumber(a.Year) - yearToNumber(b.Year)}
   const decrescentOrderFilter = (moviesObject) => {
     const yearToNumber = (string) =>
       +string.replace(/-[\s\S]*$/, '').replace('-', '');
@@ -28,7 +25,22 @@ const MoviesSearch = () => {
 
   const handleClickOnMovie = (imdbID) => {
     console.log('imdbID atual:', imdbID);
-    setModalActivation(true);
+    setModalActivation(imdbID);
+  };
+
+  React.useEffect(() => {
+    if (modalActivation.length) {
+      console.log('existe um imdbID', modalActivation);
+      searchMovieDescription(modalActivation);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalActivation]);
+
+  const searchMovieDescription = async (imdbID) => {
+    await requestDescription(
+      `http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}&type=movie`
+    );
+    console.log(movieDescription);
   };
 
   return (
@@ -40,16 +52,19 @@ const MoviesSearch = () => {
             <div
               className={`${listStyles.movieCard} ${styles.entryAnimation}`}
               key={actualMovie.imdbID}
-              onClick={() => handleClickOnMovie(actualMovie.imdbID)}
             >
               {actualMovie.Poster !== 'N/A' ? (
                 <img
                   className={styles.moviePoster}
                   src={actualMovie.Poster !== 'N/A' ? actualMovie.Poster : null}
                   alt={`Imagem de poster do filme "${actualMovie.Title}"`}
+                  onClick={() => handleClickOnMovie(actualMovie.imdbID)}
                 />
               ) : (
-                <div className={styles.noPoster}>
+                <div
+                  onClick={() => handleClickOnMovie(actualMovie.imdbID)}
+                  className={styles.noPoster}
+                >
                   <p className={styles.movieTitle}>{actualMovie.Title}</p>
                   <p className={styles.imageNotFound}>
                     Imagem de poster indisponível

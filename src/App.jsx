@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import useFetchAPI from './customHooks/useFetchAPI';
+import useSearchMovies from './customHooks/useSearchMovies';
 import Introduction from './components/Introduction';
 import MoviesSearch from './components/MoviesSearch';
 import { SearchContext } from './contexts/MoviesContext';
@@ -12,7 +12,7 @@ import ModalMovieDescription from './components/ModalMovieDescription';
 // Voltar a ver vídeo do cara q fez tutorial do omdbapi (?)
 
 const App = () => {
-  const { dataState } = useFetchAPI();
+  const { dataState } = useSearchMovies();
 
   React.useEffect(() => {
     if (dataState) console.log(dataState);

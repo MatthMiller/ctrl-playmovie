@@ -1,4 +1,123 @@
 .modalContainer {
-    background-color: red;
-    height: 40px;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    z-index: 1000;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    animation: 200ms entryModalBackground forwards;
+}
+
+@keyframes entryModalBackground {
+    from {
+        opacity: 0;
+    }
+    
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    transition: 200ms;
+    margin: 0 20px;
+    background-color: #0D0D0D;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid #050505;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 20px;
+    max-width: 600px;
+    position: relative;
+    animation: 300ms entryModal forwards;
+}
+
+@keyframes entryModal {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.loadingParent .modal {
+    grid-template-columns: auto;
+}
+
+.movieTitle {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 12px;
+    font-weight: 300;
+    text-align: center;
+    color: #EDEDED;
+    font-size: 1rem;
+    line-height: 1.1rem;
+}
+
+.infoType {
+    font-family: 'Poppins', sans-serif;
+    color: #EDEDED;
+    font-weight: 300;
+    /* font-size: 0.875rem; */
+    font-size: 1rem;
+    /* line-height: 1.1rem; */
+    line-height: 1.25rem;
+    margin-top: 12px;
+}
+
+.infoType:first-of-type {
+    margin-top: 0px;
+}
+
+.infoBody {
+    font-family: 'Montserrat', sans-serif;
+    color: #8B8B8B;
+    font-weight: 400;
+}
+
+.closeModalIcon {
+    position: absolute;
+    top: 22px;
+    right: 19px;
+    cursor: pointer;
+}
+
+.closeModalIconPath {
+    transition: 200ms;
+}
+
+.closeModalIcon:hover .closeModalIconPath {
+    fill: #EDEDED;
+}
+
+@media (max-width: 550px) {
+    .posterColumn {
+        display: grid;
+        place-content: center;
+        grid-template-columns: 180px;
+    }
+
+    .modal {
+        margin: 0 10px;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 15px;
+    }
+
+    .closeModalIcon {
+        top: 16px;
+        right: 13px;
+    }
 }
