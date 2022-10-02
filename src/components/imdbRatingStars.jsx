@@ -93,9 +93,11 @@ const ImdbRatingStars = ({ imdbRating }) => {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       {/* <div>ImdbRatingStars: {imdbRating}</div> */}
-      {returnStarIcons()}
+      {[...returnStarIcons()].map((actualStar, index) => (
+        <p key={`star${index}`}>{actualStar}</p>
+      ))}
     </div>
   );
 };
