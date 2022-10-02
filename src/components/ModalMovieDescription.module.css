@@ -140,7 +140,7 @@
         min-width: 286px;
         grid-template-columns: 1fr;
         gap: 30px;
-        padding: 30px 15px;
+        padding: 15px 15px;
     }
 
     .closeModalIcon {
@@ -157,5 +157,11 @@
     .infoType {
         font-size: 0.875rem;
         line-height: 1.1rem;
+    }
+}
+
+@media (max-height: 685px) {
+    .imdbRating {
+        display: none;
     }
 }
