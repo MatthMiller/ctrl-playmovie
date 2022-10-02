@@ -60,17 +60,6 @@ const ImdbRatingStars = ({ imdbRating }) => {
   }
 
   imdbRating = Math.floor(+imdbRating);
-  // 10 - 10 meia-estrelas <> <> <> <> <>
-  // 9 - 9 meia-estrelas <> <> <> <> <
-  // 8 - 8 meia-estrelas <> <> <> <>
-  // 7 - 7 meia-estrelas <> <> <> <
-  // 6 - 6 meia-estrelas <> <> <>
-  // 5 - 5 meia-estrelas <> <> <
-  // 4 - 4 meia-estrelas <> <>
-  // 3 - 3 meia-estrelas <> <
-  // 2 - 2 meia-estrelas <>
-  // 1 - 1 meia-estrelas <
-  // 0 - 0 meia-estrelas, todas vazias
   const returnStarIcons = () => {
     let stars = [];
     console.log(imdbRating);
@@ -92,14 +81,7 @@ const ImdbRatingStars = ({ imdbRating }) => {
     return stars;
   };
 
-  return (
-    <div style={{ display: 'flex' }}>
-      {/* <div>ImdbRatingStars: {imdbRating}</div> */}
-      {[...returnStarIcons()].map((actualStar, index) => (
-        <p key={`star${index}`}>{actualStar}</p>
-      ))}
-    </div>
-  );
+  return <div>{returnStarIcons()}</div>;
 };
 
 export default ImdbRatingStars;
