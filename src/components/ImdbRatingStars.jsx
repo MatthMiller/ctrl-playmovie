@@ -60,7 +60,6 @@ const ImdbRatingStars = ({ imdbRating }) => {
   }
 
   imdbRating = Math.floor(+imdbRating);
-  console.log(imdbRating);
   const returnStarIcons = () => {
     let stars = [];
 
