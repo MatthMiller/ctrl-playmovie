@@ -14,7 +14,7 @@ Para rodar o projeto, digite no diretório o comando:
 
 ## Conceitos/tecnologias utilizados
 
-- Consumo de _API REST_;
+- Consumo de _API REST_ OMDb;
 - Utilização de testes com _Postman_;
 - _React Js_ (_Context_, _customHooks_);
 - Prototipação com _Figma_;
