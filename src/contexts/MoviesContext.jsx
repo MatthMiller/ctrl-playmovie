@@ -5,8 +5,13 @@ import useSearchMovies from '../customHooks/useSearchMovies';
 export const MoviesContext = React.createContext();
 
 export const SearchContext = ({ children }) => {
-  const { dataState, setDataState, loadingState, errorState, request } =
-    useSearchMovies();
+  const {
+    moviesSearch,
+    setMoviesSearch,
+    loadingState,
+    errorState,
+    requestMovies,
+  } = useSearchMovies();
   const {
     movieDescription,
     setMovieDescription,
@@ -20,11 +25,11 @@ export const SearchContext = ({ children }) => {
     <MoviesContext.Provider
       value={{
         API_KEY,
-        dataState,
-        setDataState,
+        moviesSearch,
+        setMoviesSearch,
         loadingState,
         errorState,
-        request,
+        requestMovies,
         movieDescription,
         setMovieDescription,
         loadingDescription,

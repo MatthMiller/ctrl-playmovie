@@ -1,11 +1,11 @@
 import React from 'react';
 
 const useSearchMovies = () => {
-  const [dataState, setDataState] = React.useState(null);
+  const [moviesSearch, setMoviesSearch] = React.useState(null);
   const [errorState, setErrorState] = React.useState(false);
   const [loadingState, setLoadingState] = React.useState(null);
 
-  const request = React.useCallback(async (url, options) => {
+  const requestMovies = React.useCallback(async (url, options) => {
     let response;
     let json;
     try {
@@ -18,13 +18,19 @@ const useSearchMovies = () => {
       json = null;
       setErrorState(err.message);
     } finally {
-      setDataState(json);
+      setMoviesSearch(json);
       setLoadingState(false);
       return { response, json };
     }
   }, []);
 
-  return { dataState, setDataState, loadingState, errorState, request };
+  return {
+    moviesSearch,
+    setMoviesSearch,
+    loadingState,
+    errorState,
+    requestMovies,
+  };
 };
 
 export default useSearchMovies;

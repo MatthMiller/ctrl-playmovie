@@ -1,13 +1,3 @@
-.sectionTitle {
-    margin-left: 50px;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.375rem;
-    line-height: 1.375rem;
-    font-weight: 400;
-}
-
 .entryAnimation {
     animation: 300ms entryCards forwards;
 }

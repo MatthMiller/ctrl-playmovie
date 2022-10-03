@@ -6,7 +6,7 @@ import listStyles from './MoviesList.module.css';
 import { FavoriteIcon } from './MoviesFavorites';
 
 const MoviesSearch = () => {
-  const { dataState, errorState, loadingState } = useContext(MoviesContext);
+  const { moviesSearch, errorState, loadingState } = useContext(MoviesContext);
   const { movieDescription, requestDescription } = useContext(MoviesContext);
   const { modalActivation, setModalActivation } = useContext(MoviesContext);
   const { API_KEY } = useContext(MoviesContext);
@@ -47,8 +47,8 @@ const MoviesSearch = () => {
     <>
       <h3 className={listStyles.sectionTitle}>🎬 Filmes</h3>
       <section className={listStyles.moviesContainer}>
-        {!errorState && dataState?.Search ? (
-          decrescentOrderFilter(...[dataState.Search]).map((actualMovie) => (
+        {!errorState && moviesSearch?.Search ? (
+          decrescentOrderFilter(...[moviesSearch.Search]).map((actualMovie) => (
             <div
               className={`${listStyles.movieCard} ${styles.entryAnimation}`}
               key={actualMovie.imdbID}

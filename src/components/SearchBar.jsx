@@ -44,7 +44,7 @@ const SearchDateIcon = () => {
 const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [yearTerm, setYearTerm] = React.useState('');
-  const { dataState, setDataState, request, API_KEY } =
+  const { setMoviesSearch, requestMovies, API_KEY } =
     React.useContext(MoviesContext);
 
   React.useEffect(() => {
@@ -54,7 +54,7 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
         searchTerm.trim() + yearTerm.trim()
       );
       // searchMovies(searchTerm.trim(), yearTerm.trim());
-      setDataState(null);
+      setMoviesSearch(null);
       debouncedSearchMovies(searchTerm.trim(), yearTerm.trim());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +63,7 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
   const handleSearchChange = ({ target }) => {
     setSearchTerm(target.value);
     // Pra verificar como está o data state
-    if (dataState) console.log(dataState);
+    // if (dataState) console.log(dataState);
   };
 
   const handleYearChange = ({ target }) => {
@@ -76,7 +76,7 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
   );
 
   const searchMovies = async (search, year) => {
-    await request(
+    await requestMovies(
       `http://www.omdbapi.com/?s=${search}&y=${year}&apikey=${API_KEY}&type=movie`
     );
   };

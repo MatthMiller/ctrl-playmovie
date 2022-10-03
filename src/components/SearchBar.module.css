@@ -14,6 +14,13 @@
     }
 }
 
+@media (max-width: 355px) {
+    .inputsContainer {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
 .barContainer {
     position: relative;
 }
