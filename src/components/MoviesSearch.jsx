@@ -3,11 +3,11 @@ import { MoviesContext } from '../contexts/MoviesContext';
 import Loading from './Loading';
 import styles from './MoviesSearch.module.css';
 import listStyles from './MoviesList.module.css';
-import { FavoriteIcon } from './MoviesFavorites';
+// import { FavoriteIcon } from './MoviesFavorites';
 
 const MoviesSearch = () => {
   const { moviesSearch, errorState, loadingState } = useContext(MoviesContext);
-  const { movieDescription, requestDescription } = useContext(MoviesContext);
+  const { requestDescription } = useContext(MoviesContext);
   const { modalActivation, setModalActivation } = useContext(MoviesContext);
   const { API_KEY } = useContext(MoviesContext);
 
@@ -24,13 +24,11 @@ const MoviesSearch = () => {
   };
 
   const handleClickOnMovie = (imdbID) => {
-    console.log('imdbID atual:', imdbID);
     setModalActivation(imdbID);
   };
 
   React.useEffect(() => {
     if (modalActivation.length) {
-      console.log('existe um imdbID', modalActivation);
       searchMovieDescription(modalActivation);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,7 +38,6 @@ const MoviesSearch = () => {
     await requestDescription(
       `http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}&type=movie`
     );
-    console.log(movieDescription);
   };
 
   return (
@@ -71,10 +68,10 @@ const MoviesSearch = () => {
                   </p>
                 </div>
               )}
-              <div className={listStyles.favoriteTooltip}>
+              {/* <div className={listStyles.favoriteTooltip}>
                 <p>Favorite!</p>
                 <FavoriteIcon />
-              </div>
+              </div> */}
               <p
                 className={listStyles.releaseYear}
               >{`(${actualMovie.Year})`}</p>

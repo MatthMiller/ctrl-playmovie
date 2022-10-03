@@ -72,7 +72,7 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
 
   const debouncedSearchMovies = debounce(
     (search, year) => searchMovies(search, year),
-    50
+    100
   );
 
   const searchMovies = async (search, year) => {
@@ -90,11 +90,11 @@ const SearchBar = ({ searchPlaceholder, yearPlaceholder }) => {
           value={searchTerm}
           onChange={handleSearchChange}
           onBlur={handleSearchChange}
-          id='searchBar'
+          id='filmes'
           spellCheck={false}
           placeholder={searchPlaceholder}
         />
-        <label htmlFor='searchBar'>
+        <label htmlFor='filmes'>
           <SearchIcon />
         </label>
       </div>

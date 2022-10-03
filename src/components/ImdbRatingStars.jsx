@@ -60,24 +60,25 @@ const ImdbRatingStars = ({ imdbRating }) => {
   }
 
   imdbRating = Math.floor(+imdbRating);
+  console.log(imdbRating);
   const returnStarIcons = () => {
     let stars = [];
-    console.log(imdbRating);
-    if (imdbRating !== 0) {
-      for (let i = 0; i < imdbRating / 2; i++) {
-        stars.push(<Star key={i} starType='filled' />);
-      }
+
+    let filledStars = Math.floor(imdbRating / 2);
+    for (let i = 0; i < filledStars; i++) {
+      stars.push(<Star key={i + 20} starType='filled' />);
     }
 
-    if (imdbRating % 2 !== 0 && imdbRating !== 0) {
-      stars.push(<Star key='halfStar' starType='halfFilled' />);
+    // Decimal check
+    if ((imdbRating / 2) % 1 !== 0) {
+      stars.push(<Star key={'halfStar'} starType='halfFilled' />);
     }
 
-    let imdbEmptyStars = (imdbRating % 2 === 0 ? 5 : 3) - imdbRating / 2;
-    for (let k = 0; k < imdbEmptyStars; k++) {
-      stars.push(<Star key={k + 'emptyStar'} starType='emptyStar' />);
+    const remainingStars = 5 - stars.length;
+    for (let i = 0; i < remainingStars; i++) {
+      stars.push(<Star key={i} starType='emptyStar' />);
     }
-    console.log(stars);
+
     return stars;
   };
 

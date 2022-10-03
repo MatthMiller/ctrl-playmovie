@@ -12,7 +12,6 @@ const ModalMovieDescription = () => {
 
   const handleClickCloseModal = ({ target }) => {
     if (target.id === 'foraModal' || target.id === 'closeIcon') {
-      console.log('handleclick do modal funcionando');
       setModalActivation(false);
       setMovieDescription(null);
     }
